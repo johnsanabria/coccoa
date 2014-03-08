@@ -1,0 +1,15 @@
+This tool helps to provision diverse computational infrastructures such as
+computational clusters, database and web servers. 
+It heavily relies on Chef as provisioning tool. 
+
+Attributes in Recipes
+---------------------
+Attribute #{node[:users][:username]} is used in
+- mpi
+- users
+- ssh
+Attribute #{node[:hostconf][:hostname]} and  #{node[:hostconf][:hostname]} are used in
+- hostsfiles
+- nfs
+Attribute #{node[:nfs][:shareddirectory]} in
+- nfs
