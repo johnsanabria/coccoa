@@ -1,0 +1,7 @@
+For MPICH 
+- Write a proper machinefile from information defined in the hosts file
+- How to create the nodes files in nodes directory using the hosts file
+- How to create the node files considering the attributes. 
+	Read the attributes and append them in a temporary file. Then 
+	the temporary file is assembled with the rest of file needed in
+	a defined node
