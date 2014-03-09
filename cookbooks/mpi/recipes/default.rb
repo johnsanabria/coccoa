@@ -16,10 +16,10 @@ end
 #
 # Instructions for mpi4py
 #	
-execute "copy helloworld.py" do
-	user "vagrant"
-	group "vagrant"
-	cwd "/mirror"
-	command "cp /home/vagrant/mpi4py-1.3.1/demo/helloworld.py ."
-	action :run
-end
+#execute "copy helloworld.py" do
+#	user "vagrant"
+#	group "vagrant"
+#	cwd "/mirror"
+#	command "cp /home/vagrant/mpi4py-1.3.1/demo/helloworld.py ."
+#	action :run
+#end

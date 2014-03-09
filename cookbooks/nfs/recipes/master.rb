@@ -1,3 +1,12 @@
+execute "update" do
+        user "root"
+        cwd "/tmp"
+        command "apt-get update"
+        action :run
+end
+package "nfs-kernel-server" do
+        action :install
+end
 execute "exports" do
         user "root"
         command "echo \"#{node[:nfs][:shareddirectory]} *(rw,sync,no_root_squash,no_subtree_check)\" | sudo tee -a /etc/exports"

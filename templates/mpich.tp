@@ -8,8 +8,9 @@
 # Note the M letter in line starting with 10.10.1.0, it indicates that 
 # this node (10.10.1.0) will be the master node
 #
-10.10.1.0 master.demo.org master # M
-
+10.10.10.2 master.demo.org master 
+10.10.10.3 wn-01.demo.org wn-01
+10.10.10.4 wn-02.demo.org wn-02
 -- ef cookbooks/hostsfiles/files/default/hosts
 #
 # The following are the recipes defined for a mpich master node.
@@ -18,20 +19,16 @@
 # will work
 # 
 -- br roles/mpich-master.json
-
 "recipe[hostsfiles]"
 "recipe[users]"
-"recipe[packages]"
-"recipe[packages::mpi4py]"
-"recipe[packages::nfs-master]"
+"recipe[mpipackages]"
+"recipe[mpi4py]"
 "recipe[nfs]"
 "recipe[nfs::master]"
 "recipe[mpi]" 
 "recipe[ssh]"
 "recipe[ssh::master]"
-
 -- er roles/mpich-master.json
-
 #
 # The following are the recipes defined for a mpich working node.
 # If you understand that some of them can be omitted, remove them but
@@ -39,12 +36,10 @@
 # will work
 # 
 -- br roles/mpich-node.json
-
 "recipe[hostsfiles]"
 "recipe[users]"
-"recipe[packages]"
-"recipe[packages::mpi4py]"
-"recipe[packages::nfs-client]"
+"recipe[mpipackages]"
+"recipe[mpi4py]"
 "recipe[nfs]"
 "recipe[nfs::client]"
 "recipe[ssh]"
@@ -67,7 +62,7 @@
 #
 -- ba
 "users": {
-	"username": "<TYPE IT>"
+	"username": "cluster"
 }
 -- ea
 #
@@ -75,6 +70,6 @@
 # 
 -- ba
 "nfs": {
-	"shareddirectory": "<TYPE IT>"
+	"shareddirectory": "/cluster"
 }
 -- ea

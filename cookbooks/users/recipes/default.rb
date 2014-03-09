@@ -1,5 +1,4 @@
-user "#{node[:user][:username]}" do
-        not_if "user id"
+user "#{node[:users][:username]}" do
         comment "comment"
         home "/home/#{node[:users][:username]}"
         shell "/bin/bash"
