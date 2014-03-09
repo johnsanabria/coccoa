@@ -1,22 +1,17 @@
 #
 -- bf cookbooks/hostsfiles/files/default/hosts
+# hosts file
 # Please write your customized hosts file
-# <ip> <hostname> <alias> [M]
-# 10.10.1.0 master.demo.org master M
+# <ip> <hostname> <alias> 
+# 10.10.1.0 master.demo.org master 
 # 10.10.1.1 wn-01.demo.org wn-01 
 #
-# Note the M letter in line starting with 10.10.1.0, it indicates that 
-# this node (10.10.1.0) will be the master node
-#
-10.10.10.2 master.demo.org master 
-10.10.10.3 wn-01.demo.org wn-01
-10.10.10.4 wn-02.demo.org wn-02
 -- ef cookbooks/hostsfiles/files/default/hosts
 #
 # The following are the recipes defined for a mpich master node.
 # If you understand that some of them can be omitted, remove them but
 # any modification do by yourself do not guarantee that the deployment 
-# will work
+# of an MPICH cluster will work
 # 
 -- br roles/mpich-master.json
 "recipe[hostsfiles]"
@@ -33,7 +28,7 @@
 # The following are the recipes defined for a mpich working node.
 # If you understand that some of them can be omitted, remove them but
 # any modification do by yourself do not guarantee that the deployment 
-# will work
+# of an MPICH cluster will work
 # 
 -- br roles/mpich-node.json
 "recipe[hostsfiles]"
@@ -48,12 +43,17 @@
 #
 # Section attributes
 #
+# You should note that in front of each variable there is either "<TYPE IT>" 
+# or "<WRITE YOUR CUSTOM VALUE>". Those with "<TYPE IT>" will be modified by 
+# the script  according information given, in this case, by the hosts file 
+# entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
+# before to run the scripts.
+#
 # For hosts recipe
 #
 -- ba
 "hostconf": {
 	"hostname": "<TYPE IT>",
-	"hostsfile": "hosts",
 	"hostmaster": "<TYPE IT>"
 }
 -- ea
@@ -62,7 +62,7 @@
 #
 -- ba
 "users": {
-	"username": "cluster"
+	"username": "<WRITE YOUR CUSTOM VALUE>"
 }
 -- ea
 #
@@ -70,6 +70,6 @@
 # 
 -- ba
 "nfs": {
-	"shareddirectory": "/cluster"
+	"shareddirectory": "<WRITE YOUR CUSTOM VALUE>"
 }
 -- ea

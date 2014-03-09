@@ -1,0 +1,1 @@
+default["hostconf"]["hostsfile"] = "hosts"

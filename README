@@ -1,6 +1,37 @@
 This tool helps to provision diverse computational infrastructures such as
 computational clusters, database and web servers. 
+
+This tool does not create virtual machines or deploy operating systems in physical machines but assumes that those machines (virtual or physical) have a user with root permissions which will be in charge of provisioning them. 
+
 It heavily relies on Chef as provisioning tool. 
+
+HOW TO RUN
+----------
+
+- Make a copy of the template for the infrastructure that you want deploy, 
+  e.g. template/mpich.tp
+- Do the proper changes
+- Run coccoa.py command as follows
+	./coccoa.py <type of cluster> <configuration file>
+  <type of cluster> should have some of these values: mpich, condor, hadoop
+  <configuration file> points to a file which is a modified file taken from
+  the templates directory
+
+  coccoa.py's internals
+	1- Parses and creates all files defined in the configuration file
+	2- Parses and creates all roles defined in the configuration file
+	3- Parses and create a file with all the attributes defined in the
+	   configuration file
+- Run coccoa-mpich.py as follows
+	./coccoa-mpich.py cookbooks/hostfiles/files/default/hosts attributes.tp
+  For every line in hosts a new file is created in nodes/. The first ip is used
+  as master of the cluster and others are used as computational nodes.
+  
+  coccoa-mpich.py's internals
+	1- Creates files in nodes directory. Each file in this directory 
+           contains a set of attributes suitable for that node
+	2- Creates the cookbooks/mpi/files/default/machinefile file which
+           is used when mpiexec is executed.        
 
 Attributes in Recipes
 ---------------------
