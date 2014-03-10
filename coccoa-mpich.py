@@ -63,6 +63,7 @@ _hostfile.close()
 i = 0
 _master = ""
 _machinefile = open("cookbooks/mpi/files/default/machinefile",'w')
+_createdfiles = ""
 
 #
 # Reading every ip
@@ -72,7 +73,8 @@ while (i < len(_hostlines)):
 	i = i + 1
 	if (line[0] == '#'):
 		continue
-	_filenode = line.split()[0] + ".json"
+	_filenode = "nodes/" + line.split()[0] + ".json"
+	_createdfiles = _createdfiles + "\n\t" + _filenode
 	_nodename = line.split()[2]
 	_machinefile.write(_nodename + "\n")
 	if (_master == ""): # very first line
@@ -81,7 +83,7 @@ while (i < len(_hostlines)):
 	#
 	# creating a node in nodes directory, e.g. nodes/10.10.10.1.json
 	#	
-	_tmpfile = open("nodes/" + _filenode,'w')
+	_tmpfile = open(_filenode,'w')
 	#
 	# reading attributes
 	#
@@ -112,3 +114,4 @@ while (i < len(_hostlines)):
 	_tmpfile.close()
 
 _machinefile.close()
+print "The following files were created: " + _createdfiles
