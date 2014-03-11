@@ -37,6 +37,7 @@ Attributes in Recipes
 ---------------------
 Attribute #{node[:users][:username]} is used in
 - mpi
+- mpi4py
 - users
 - ssh
 Attribute #{node[:hostconf][:hostname]} and  #{node[:hostconf][:hostname]} are used in

@@ -20,9 +20,9 @@ end
 # Instructions for mpi4py
 #	
 #execute "copy helloworld.py" do
-#	user "vagrant"
-#	group "vagrant"
-#	cwd "/mirror"
-#	command "cp /home/vagrant/mpi4py-1.3.1/demo/helloworld.py ."
+#	user "#{node[:users][:username]}"
+#	group "#{node[:users][:username]}"
+#	cwd "#{node[:nfs][:shareddirectory]}"
+#	command "cp /home/#{node[:users][:username]}/mpi4py-1.3.1/demo/helloworld.py ."
 #	action :run
 #end

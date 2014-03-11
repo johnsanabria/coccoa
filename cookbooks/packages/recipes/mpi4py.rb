@@ -10,24 +10,24 @@ cookbook_file "/tmp/mpi4py-1.3.1.tar.gz" do
 end
 
 execute "uncompress mpi4py" do
-	user "vagrant"
-	group "vagrant"
-	cwd "/home/vagrant"
+	user "#{node[:users][:username]}"
+	group "#{node[:users][:username]}"
+	cwd "/home/#{node[:users][:username]}"
 	command "tar xfz /tmp/mpi4py-1.3.1.tar.gz"
 	action :run
 end
 
-cookbook_file "/home/vagrant/mpi4py-1.3.1/mpi.cfg" do
+cookbook_file "/home/#{node[:users][:username]}/mpi4py-1.3.1/mpi.cfg" do
 	source "mpi.cfg"
-	user "vagrant"
-	group "vagrant"
+	user "#{node[:users][:username]}"
+	group "#{node[:users][:username]}"
 	mode 0644
 end
 
 execute "build mpi4py" do
-	user "vagrant"
-	group "vagrant"
-	cwd "/home/vagrant/mpi4py-1.3.1"
+	user "#{node[:users][:username]}"
+	group "#{node[:users][:username]}"
+	cwd "/home/#{node[:users][:username]}/mpi4py-1.3.1"
 	command "python setup.py build"
 	action :run
 end
@@ -35,7 +35,7 @@ end
 execute "install mpi4py" do
 	user "root"
 	group "root"
-	cwd "/home/vagrant/mpi4py-1.3.1"
+	cwd "/home/#{node[:users][:username]}/mpi4py-1.3.1"
 	command "python setup.py install"
 	action :run
 end
