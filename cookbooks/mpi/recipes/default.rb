@@ -1,17 +1,20 @@
 cookbook_file "/home/#{node[:users][:username]}/mpi_hello.c" do
         source "mpi_hello.c"
         mode "0644"
-        owner "cluster"
+        owner "#{node[:users][:username]}"
 end
-cookbook_file "/home/#{node[:users][:username]}/Makefile" do
-        source "Makefile"
+template "/home/#{node[:users][:username]}/Makefile" do
+        source "Makefile.erb"
         mode "0644"
-        owner "cluster"
+        owner "#{node[:users][:username]}"
+	variables(
+		:shareddir => "#{node[:nfs][:shareddirectory]}"
+	)
 end
 cookbook_file "/home/#{node[:users][:username]}/machinefile" do
         source "machinefile"
         mode "0644"
-        owner "cluster"
+        owner "#{node[:users][:username]}"
 end
 #
 # Instructions for mpi4py

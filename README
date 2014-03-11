@@ -44,3 +44,4 @@ Attribute #{node[:hostconf][:hostname]} and  #{node[:hostconf][:hostname]} are u
 - nfs
 Attribute #{node[:nfs][:shareddirectory]} in
 - nfs
+- mpi
