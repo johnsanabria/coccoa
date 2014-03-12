@@ -18,6 +18,16 @@
 # The third field in any line is the alias so the third field in the first line
 # is the alias of the master node. 
 #
+#- Run coccoa-mpich.py as follows
+#	./coccoa-mpich.py cookbooks/hostfiles/files/default/hosts attributes.tp
+#  For every line in hosts a new file is created in nodes/. The first ip is used
+#  as master of the cluster and others are used as computational nodes.
+#  
+#  coccoa-mpich.py's internals
+#	1- Creates files in nodes directory. Each file in this directory 
+#           contains a set of attributes suitable for that node
+#	2- Creates the cookbooks/mpi/files/default/machinefile file which
+#           is used when mpiexec is executed.        
 
 import sys
 import re

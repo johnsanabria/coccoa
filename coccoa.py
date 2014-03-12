@@ -4,6 +4,22 @@
 # provisioning of diverse infrastructures such as web servers, database servers,
 # mpich, condor and hadoop clusters.
 #
+#
+#- Make a copy of the template for the infrastructure that you want deploy, 
+#  e.g. template/mpich.tp
+#- Do the proper changes
+#- Run coccoa.py command as follows
+#	./coccoa.py <type of cluster> <configuration file>
+#  <type of cluster> should have some of these values: mpich, condor, hadoop
+#  <configuration file> points to a file which is a modified file taken from
+#  the templates directory
+#
+#  coccoa.py's internals
+#	1- Parses and creates all files defined in the configuration file
+#	2- Parses and creates all roles defined in the configuration file
+#	3- Parses and create a file with all the attributes defined in the
+#	   configuration file
+#
 # Date: March 7, 2014
 # Author: John A. Sanabria
 #
