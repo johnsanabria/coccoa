@@ -35,7 +35,7 @@ def parseafileentry(i, line, lines):
 		line = lines[i]
 		if (line[0] == '-' and line[1] == '-' and line[3] == 'e' and line[4] == 'f'): # exit
 			break
-		elif (line[0] == '#'):
+		elif (line[0] == '#' or line[0] == '\n'):
 			i = i + 1
 		else: # store this line in the file
 			_file.write(line) 
@@ -160,11 +160,12 @@ def parsecreatecheffiles(conffile):
 #
 if (len(sys.argv) < 3):
 	sys.exit("Need specify an infrastructure and configuration file\n %s mpich mpich.conf"%(sys.argv[0]))
-if (sys.argv[1] == "mpich"):
+if (sys.argv[1] == "mpich" or sys.argv[1] == "condor"):
 	if (os.path.isfile(sys.argv[2])):
 		destfile = sys.argv[2]
 	else:
 		sys.exit("%s does not exist\n\t1- Copy the template/%s.tp and renamed it as %s.\n\t2- Do not forget to customized the content of the copied file"%(sys.argv[2],sys.argv[1],sys.argv[2]))
+
 	parsecreatecheffiles(destfile)
 else:
 	print "There is not suppot for '%s' at this time"%sys.argv[1]
