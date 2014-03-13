@@ -61,8 +61,10 @@
 #
 -- ba
 "condor": {
-	"condoruser": "<WRITE YOUR CUSTOM VALUE>",
+	"condordomain": "<TYPE IT>",
 	"condormaster": "<TYPE IT>",
+	"masterip": "<TYPE IT>",
+	"condoruser": "<WRITE YOUR CUSTOM VALUE>",
 	"installdir": "<WRITE YOUR CUSTOM VALUE>"
 }
 -- ea

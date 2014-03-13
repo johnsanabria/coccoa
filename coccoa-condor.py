@@ -72,6 +72,8 @@ _hostlines = _hostfile.readlines()
 _hostfile.close()
 i = 0
 _master = ""
+_condordomain = ""
+_masterip = ""
 _createdfiles = ""
 
 #
@@ -86,7 +88,10 @@ while (i < len(_hostlines)):
 	_createdfiles = _createdfiles + "\n\t" + _filenode
 	_nodename = line.split()[2]
 	if (_master == ""): # very first line
+		_masterip = line.split()[0] # master's ip
 		_master = line.split()[2] # the alias of master is found
+		# http://stackoverflow.com/questions/1521592/get-root-domain-of-link
+		_condordomain = ".".join(line.split()[1].split(".")[1:])
 	print "To create %s"%(_filenode)
 	#
 	# creating a node in nodes directory, e.g. nodes/10.10.10.1.json
@@ -109,6 +114,8 @@ while (i < len(_hostlines)):
 	#
 	_attributelines = findandchangefield("hostconf","hostmaster",_master,_attributelines)
 	_attributelines = findandchangefield("condor","condormaster",_master,_attributelines)
+	_attributelines = findandchangefield("condor","condordomain",_condordomain,_attributelines)
+	_attributelines = findandchangefield("condor","masterip",_masterip,_attributelines)
 	_tmpfile.write("{\n")
 	j = 0
 	# Writing attributes in the new nodes/<some-ip>.json file
