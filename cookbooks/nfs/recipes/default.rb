@@ -12,7 +12,7 @@ directory "#{node[:nfs][:shareddirectory]}" do
         mode 0777
         action :create
 end
-execute "change permissions to mirror" do
+execute "change permissions to #{node[:nfs][:shareddirectory]}" do
         user "root"
         command "chmod 1777 #{node[:nfs][:shareddirectory]}"
         action :run
