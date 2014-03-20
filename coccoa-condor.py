@@ -86,10 +86,10 @@ while (i < len(_hostlines)):
 		continue
 	_filenode = "nodes/" + line.split()[0] + ".json"
 	_createdfiles = _createdfiles + "\n\t" + _filenode
-	_nodename = line.split()[2]
+	_nodename = line.split()[1]
 	if (_master == ""): # very first line
 		_masterip = line.split()[0] # master's ip
-		_master = line.split()[2] # the alias of master is found
+		_master = line.split()[1] # the alias of master is found
 		# http://stackoverflow.com/questions/1521592/get-root-domain-of-link
 		_condordomain = ".".join(line.split()[1].split(".")[1:])
 	print "To create %s"%(_filenode)
