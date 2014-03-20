@@ -1,6 +1,6 @@
 openmpi Cookbook
 ================
-This cookbook helps the openmpi package. I use this page as guide http://techtinkering.com/2009/12/02/setting-up-a-beowulf-cluster-using-open-mpi-on-linux/
+This cookbook helps to the installation of an openmpi cluster, I used this page as guide http://techtinkering.com/2009/12/02/setting-up-a-beowulf-cluster-using-open-mpi-on-linux/
 
 Requirements
 ------------
