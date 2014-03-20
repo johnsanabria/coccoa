@@ -1,0 +1,6 @@
+run: compile
+	mpirun -np 8 --hostfile machinefile <%= @shareddir %>/openmpi_demo
+compile:
+	mpicc openmpi_demo.c -o <%= @shareddir %>/openmpi_demo
+clean:
+	rm -rf <%= @shareddir %>/openmpi_demo

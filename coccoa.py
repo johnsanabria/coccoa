@@ -160,7 +160,7 @@ def parsecreatecheffiles(conffile):
 #
 if (len(sys.argv) < 3):
 	sys.exit("Need specify an infrastructure and configuration file\n %s mpich mpich.conf"%(sys.argv[0]))
-if (sys.argv[1] == "mpich" or sys.argv[1] == "condor"):
+if (sys.argv[1] == "mpich" or sys.argv[1] == "condor" or sys.argv[1] == "openmpi"):
 	if (os.path.isfile(sys.argv[2])):
 		destfile = sys.argv[2]
 	else:
