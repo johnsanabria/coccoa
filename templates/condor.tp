@@ -65,6 +65,7 @@
 	"condormaster": "<TYPE IT>",
 	"masterip": "<TYPE IT>",
 	"condoruser": "<WRITE YOUR CUSTOM VALUE>",
+	"compressedfilename": "<WRITE YOUR CUSTOM VALUE>",
 	"installdir": "<WRITE YOUR CUSTOM VALUE>"
 }
 -- ea
