@@ -696,7 +696,7 @@ function postFix
 function procesaArgumentos
 {
  tipo="";
- while getopts "Hbt:c:p:d:u:sh" arg
+ while getopts "Hbt:c:p:d:u:i:sh" arg
  do
   case ${arg} in
    h) # Ayuda español
@@ -788,6 +788,9 @@ function procesaArgumentos
    u) # Usuario que ejecutara Condor
       leeUser ${OPTARG}
    ;;
+   i) # primary network interface
+      primnetint="NETWORK_INTERFACE=${OPTARG}"
+   ;;
    ?)
     ayudaEs
     exit
@@ -848,6 +851,11 @@ fi
  echo "${strComenTitulo}" >> ${prefijo}/local.${HOST}/condor_config.local
  echo "${strComenAllowWrite}" >> ${prefijo}/local.${HOST}/condor_config.local
  echo "${allowWrite}" >> ${prefijo}/local.${HOST}/condor_config.local
+ if [ "${primnetint}x" = "x" ]; then
+	echo "[WARN] Not primary network interface was provided"
+ else
+	echo "${primnetint}" >> ${prefijo}/local.${HOST}/condor_config.local 
+ fi
 # Sep-20-2010
 # En caso de no detectar Swap desactivarlo.
 # Verificar que hay Swap

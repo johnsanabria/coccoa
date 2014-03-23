@@ -75,6 +75,7 @@ _master = ""
 _condordomain = ""
 _masterip = ""
 _createdfiles = ""
+_myip = ""
 
 #
 # Reading every ip
@@ -84,7 +85,8 @@ while (i < len(_hostlines)):
 	i = i + 1
 	if (line[0] == '#'):
 		continue
-	_filenode = "nodes/" + line.split()[0] + ".json"
+	_myip = line.split()[0]
+	_filenode = "nodes/" + _myip + ".json"
 	_createdfiles = _createdfiles + "\n\t" + _filenode
 	_nodename = line.split()[1]
 	if (_master == ""): # very first line
@@ -116,6 +118,7 @@ while (i < len(_hostlines)):
 	_attributelines = findandchangefield("condor","condormaster",_master,_attributelines)
 	_attributelines = findandchangefield("condor","condordomain",_condordomain,_attributelines)
 	_attributelines = findandchangefield("condor","masterip",_masterip,_attributelines)
+	_attributelines = findandchangefield("condor","primaryip",_myip,_attributelines)
 	_tmpfile.write("{\n")
 	j = 0
 	# Writing attributes in the new nodes/<some-ip>.json file

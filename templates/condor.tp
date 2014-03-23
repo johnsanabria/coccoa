@@ -63,6 +63,7 @@
 "condor": {
 	"condordomain": "<TYPE IT>",
 	"condormaster": "<TYPE IT>",
+	"primaryip": "<TYPE IT>",
 	"masterip": "<TYPE IT>",
 	"condoruser": "<WRITE YOUR CUSTOM VALUE>",
 	"compressedfilename": "<WRITE YOUR CUSTOM VALUE>",
