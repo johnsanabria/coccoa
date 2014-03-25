@@ -6,6 +6,7 @@ execute "update" do
 end
 package "nfs-kernel-server" do
         action :install
+	options "--force-yes"
 end
 execute "exports" do
         user "root"

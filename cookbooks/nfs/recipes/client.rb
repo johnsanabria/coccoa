@@ -6,6 +6,7 @@ execute "update" do
 end
 package "nfs-common" do
         action :install
+	options "--force-yes"
 end
 template "/tmp/fstab.tmp" do
         source "fstab.erb"

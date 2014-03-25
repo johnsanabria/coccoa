@@ -14,13 +14,17 @@ execute "update" do
 end
 package "openmpi-bin" do
         action :install
+	options "--force-yes"
 end
 package "openmpi-common" do
         action :install
+	options "--force-yes"
 end
 package "libopenmpi1.3" do
         action :install
+	options "--force-yes"
 end
 package "libopenmpi-dev" do
         action :install
+	options "--force-yes"
 end

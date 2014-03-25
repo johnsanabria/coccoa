@@ -6,6 +6,7 @@ execute "update" do
 end
 package "build-essential" do
         action :install
+	options "--force-yes"
 end
 cookbook_file "/home/#{node[:users][:username]}/openmpi_demo.c" do
         source "openmpi_demo.c"
