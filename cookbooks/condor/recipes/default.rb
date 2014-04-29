@@ -31,3 +31,14 @@ cookbook_file "/tmp/#{node[:condor][:compressedfilename]}/install.bash" do
 	mode 0755
 	owner "#{node[:condor][:condoruser]}"
 end
+if platform?("ubuntu")
+	execute "updating system" do
+		user "root"
+		command "apt-get update"
+	end
+else
+	execute "updating system" do
+		user "root"
+		command "yum update -y"
+	end
+end
