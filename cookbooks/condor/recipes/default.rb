@@ -41,4 +41,12 @@ else
 		user "root"
 		command "yum update -y"
 	end
+	execute "stopping the iptables service" do
+		user "root"
+		command "service iptables stop"
+	end
+	execute "disabling the iptables service" do
+		user "root"
+		command "chkconfig iptables off"
+	end
 end
