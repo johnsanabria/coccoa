@@ -1,18 +1,30 @@
-execute "update" do
-        user "root"
-        cwd "/tmp"
-        command "apt-get update"
-        action :run
+if platform?("ubuntu")
+	execute "update" do
+		user "root"
+		cwd "/tmp"
+		command "apt-get update"
+		action :run
+	end
+	package "nfs-common" do
+		action :install
+		options "--force-yes"
+	end
+else
+	# modify considering characteristics of redhat based systems
+	package "nfs-utils" do
+		action :install
+		options "-y"
+	end
+	package "nfs-utils-lib" do
+		action :install
+		options "-y"
+	end
 end
-package "nfs-common" do
-        action :install
-	options "--force-yes"
-end
+
 template "/tmp/fstab.tmp" do
         source "fstab.erb"
         mode 0666
         owner "root"
-        group "admin"
         variables(
                 :headnode => "#{node[:hostconf][:hostmaster]}",
 		:shareddir => "#{node[:nfs][:shareddirectory]}"

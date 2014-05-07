@@ -1,0 +1,83 @@
+#
+-- bf cookbooks/hostsfiles/files/default/hosts
+# hosts file
+# Please write your customized hosts file
+# <ip> <hostname> <alias> 
+# 10.10.1.0 master.demo.org master 
+# 10.10.1.1 wn-01.demo.org wn-01 
+#
+172.17.9.51 cancerbero.netlab.eisc.univalle.edu.co cancerbero
+172.17.9.5 ws-05.netlab.eisc.univalle.edu.co ws-05
+172.17.9.6 ws-06.netlab.eisc.univalle.edu.co ws-06
+172.17.9.7 ws-07.netlab.eisc.univalle.edu.co ws-07
+172.17.9.8 ws-08.netlab.eisc.univalle.edu.co ws-08
+172.17.9.9 ws-09.netlab.eisc.univalle.edu.co ws-09
+172.17.9.10 ws-10.netlab.eisc.univalle.edu.co ws-10
+172.17.9.12 ws-12.netlab.eisc.univalle.edu.co ws-12
+172.17.9.13 ws-13.netlab.eisc.univalle.edu.co ws-13
+172.17.9.14 ws-14.netlab.eisc.univalle.edu.co ws-14
+-- ef cookbooks/hostsfiles/files/default/hosts
+#
+# The following are the recipes defined for a mpich master node.
+# If you understand that some of them can be omitted, remove them but
+# any modification do by yourself do not guarantee that the deployment 
+# of an MPICH cluster will work
+# 
+-- br roles/openmpi-master.json
+"recipe[hostsfiles]"
+"recipe[users]"
+"recipe[openmpi]"
+"recipe[nfs]"
+"recipe[nfs::master]"
+"recipe[openmpi::master]" 
+"recipe[ssh]"
+"recipe[ssh::master]"
+-- er roles/openmpi-master.json
+#
+# The following are the recipes defined for a mpich working node.
+# If you understand that some of them can be omitted, remove them but
+# any modification do by yourself do not guarantee that the deployment 
+# of an MPICH cluster will work
+# 
+-- br roles/openmpi-node.json
+"recipe[hostsfiles]"
+"recipe[users]"
+"recipe[openmpi]"
+"recipe[nfs]"
+"recipe[nfs::client]"
+"recipe[ssh]"
+"recipe[ssh::client]"
+-- er roles/openmpi-node.json
+#
+# Section attributes
+#
+# You should note that in front of each variable there is either "<TYPE IT>" 
+# or "<WRITE YOUR CUSTOM VALUE>". Those with "<TYPE IT>" will be modified by 
+# the script  according information given, in this case, by the hosts file 
+# entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
+# before to run the scripts.
+#
+# For hosts recipe
+#
+-- ba
+"hostconf": {
+	"hostname": "<TYPE IT>",
+	"hostmaster": "<TYPE IT>"
+}
+-- ea
+#
+# For users recipe
+#
+-- ba
+"users": {
+	"username": "hpuser"
+}
+-- ea
+#
+# For nfs recipe
+# 
+-- ba
+"nfs": {
+	"shareddirectory": "/shared"
+}
+-- ea
