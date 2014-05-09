@@ -1,0 +1,14 @@
+{
+	"name": "mpich-node",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"run_list": [
+		"recipe[hostsfiles]",
+		"recipe[users]",
+		"recipe[openmpi]",
+		"recipe[nfs]",
+		"recipe[nfs::client]",
+		"recipe[ssh]",
+		"recipe[ssh::client]"
+	]
+}

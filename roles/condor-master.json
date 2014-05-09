@@ -1,0 +1,11 @@
+{
+	"name": "condor-master",
+	"chef_type": "role",
+	"json_class": "Chef::Role",
+	"run_list": [
+		"recipe[hostsfiles]",
+		"recipe[users]",
+		"recipe[condor]",
+		"recipe[condor::master]"
+	]
+}

@@ -1,0 +1,15 @@
+{
+"hostconf": {
+	"hostname": "condor-master",
+	"hostmaster": "condor-master"
+},
+"users": {
+	"username": "nmossos"
+},
+"condor": {
+	"condoruser": "condor",
+	"condormaster": "condor-master",
+	"installdir": "/usr"
+},
+"run_list": ["role[condor-master]"]
+}

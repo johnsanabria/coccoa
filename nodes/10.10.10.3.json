@@ -1,0 +1,19 @@
+{
+"hostconf": {
+	"hostname": "wn-01.demo.org",
+	"hostmaster": "condor-master.demo.org"
+},
+"users": {
+	"username": "user"
+},
+"condor": {
+	"condordomain": "demo.org",
+	"condormaster": "condor-master.demo.org",
+	"primaryip": "10.10.10.3",
+	"masterip": "10.10.10.2",
+	"condoruser": "condor",
+	"compressedfilename": "condor-8.0.6-x86_64_Ubuntu12-stripped",
+	"installdir": "/opt"
+},
+"run_list": ["role[condor-node]"]
+}
