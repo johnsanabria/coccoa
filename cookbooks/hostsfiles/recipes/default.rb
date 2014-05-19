@@ -1,14 +1,22 @@
 # hosts file is created from a template file
 cookbook_file "/tmp/hosts" do
-        source "#{node[:hostconf][:hostsfile]}"
+        source "#{node[:hostsfiles][:hostsfile]}"
         mode 0644
         owner "root"
         group "root"
 end
-# append the new hosts to the existing hosts file
-execute "cat #{node[:hostconf][:hostsfile]}" do
+# hosts file is created from a template file
+cookbook_file "/tmp/appendonlynew.sh" do
+        source "appendonlynew.sh"
+        mode 0755
+        owner "root"
+        group "root"
+end
+# append only new lines to the existing hosts file
+execute "append new lines to hosts file" do
 	user "root"
-	command "cat /tmp/hosts >> /etc/hosts"
+	cwd "/tmp"
+	command "./appendonlynew.sh /tmp/hosts /etc/hosts"
 end
 if platform?("ubuntu")
 	include_recipe "hostsfiles::ubuntu"

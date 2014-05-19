@@ -1,7 +1,7 @@
 if platform?("ubuntu") 
 	execute "installing ganglia master" do
 		user "root"
-		command "apt-get -y install -qq ganglia-webfrontend ganglia-monitor rrdtool gmetad"
+		command "export DEBIAN_FRONTEND=noninteractive; apt-get -y --force-yes install -qq ganglia-webfrontend ganglia-monitor rrdtool gmetad"
 		action :run
 	end
 	execute "copy apache.conf to ganglia.conf " do

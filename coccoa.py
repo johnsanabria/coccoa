@@ -159,8 +159,8 @@ def parsecreatecheffiles(conffile):
 # Main program
 #
 if (len(sys.argv) < 3):
-	sys.exit("Need specify an infrastructure and configuration file\n %s mpich mpich.conf"%(sys.argv[0]))
-if (sys.argv[1] == "mpich" or sys.argv[1] == "condor" or sys.argv[1] == "openmpi"):
+	sys.exit("Need specify an infrastructure and configuration file\n %s ganglia ganglia.conf"%(sys.argv[0]))
+if (sys.argv[1] == "mpich" or sys.argv[1] == "condor" or sys.argv[1] == "openmpi" or sys.argv[1] == "ganglia"):
 	if (os.path.isfile(sys.argv[2])):
 		destfile = sys.argv[2]
 	else:

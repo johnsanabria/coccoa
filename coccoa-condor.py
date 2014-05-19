@@ -50,7 +50,7 @@ def findandchangefield(att,subatt,value,lines):
 		# }
 		# which is a misassumption
 		if subatt in line:
-			line = re.sub('<TYPE IT>',value,line)
+			line = re.sub('<AUTO>',value,line)
 			lines[i] = line
 			break
 		i = i + 1
@@ -106,15 +106,15 @@ while (i < len(_hostlines)):
 	_attributelines = _attributesfile.readlines()
 	_attributesfile.close()
 	#
-	# find the hostconf attribute and then its subattribute named as
+	# find the hostsfiles attribute and then its subattribute named as
 	# hostname then replace its value by _nodename
 	#
-	_attributelines = findandchangefield("hostconf","hostname",_nodename,_attributelines)
+	_attributelines = findandchangefield("hostsfiles","hostname",_nodename,_attributelines)
 	#
-	# find the hostconf attribute and then its subattribute named as
+	# find the hostsfiles attribute and then its subattribute named as
 	# hostname then replace its value by _master
 	#
-	_attributelines = findandchangefield("hostconf","hostmaster",_master,_attributelines)
+	_attributelines = findandchangefield("hostsfiles","hostmaster",_master,_attributelines)
 	_attributelines = findandchangefield("condor","condormaster",_master,_attributelines)
 	_attributelines = findandchangefield("condor","condordomain",_condordomain,_attributelines)
 	_attributelines = findandchangefield("condor","masterip",_masterip,_attributelines)

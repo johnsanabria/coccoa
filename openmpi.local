@@ -8,7 +8,6 @@
 #
 10.10.10.2 master.demo.org master
 10.10.10.3 wn-01.demo.org wn-01
-10.10.10.4 wn-02.demo.org wn-02
 -- ef cookbooks/hostsfiles/files/default/hosts
 #
 # The following are the recipes defined for a openmpi master node.
@@ -17,6 +16,7 @@
 # of an MPICH cluster will work
 # 
 -- br roles/openmpi-master.json
+"recipe[aptmirror]"
 "recipe[hostsfiles]"
 "recipe[users]"
 "recipe[openmpi]"
@@ -33,6 +33,7 @@
 # of an MPICH cluster will work
 # 
 -- br roles/openmpi-node.json
+"recipe[aptmirror]"
 "recipe[hostsfiles]"
 "recipe[users]"
 "recipe[openmpi]"
@@ -44,8 +45,8 @@
 #
 # Section attributes
 #
-# You should note that in front of each variable there is either "<TYPE IT>" 
-# or "<WRITE YOUR CUSTOM VALUE>". Those with "<TYPE IT>" will be modified by 
+# You should note that in front of each variable there is either "<AUTO>" 
+# or "<WRITE YOUR CUSTOM VALUE>". Those with "<AUTO>" will be modified by 
 # the script  according information given, in this case, by the hosts file 
 # entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
 # before to run the scripts.
@@ -53,9 +54,9 @@
 # For hosts recipe
 #
 -- ba
-"hostconf": {
-	"hostname": "<TYPE IT>",
-	"hostmaster": "<TYPE IT>"
+"hostsfiles": {
+	"hostname": "<AUTO>",
+	"hostmaster": "<AUTO>"
 }
 -- ea
 #

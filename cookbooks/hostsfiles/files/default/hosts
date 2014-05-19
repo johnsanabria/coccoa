@@ -1,3 +1,5 @@
-10.10.10.2 condor-master.demo.org condor-master
-10.10.10.3 wn-01.demo.org wn-01
-10.10.10.4 wn-02.demo.org wn-02
+172.17.9.51	master.demo.org	master
+172.17.9.5	wn-01.demo.org	wn-01
+172.17.9.6	wn-01.demo.org	wn-01
+172.17.9.7	wn-01.demo.org	wn-01
+172.17.9.8	wn-01.demo.org	wn-01

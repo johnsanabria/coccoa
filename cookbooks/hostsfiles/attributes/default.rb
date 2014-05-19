@@ -1,2 +1,2 @@
-default["hostconf"]["hostsfile"] = "hosts"
-default["hostconf"]["hostname"] = "host"
+default["hostsfiles"]["hostsfile"] = "hosts"
+default["hostsfiles"]["hostname"] = "host"

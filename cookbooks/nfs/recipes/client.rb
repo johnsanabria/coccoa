@@ -26,7 +26,7 @@ template "/tmp/fstab.tmp" do
         mode 0666
         owner "root"
         variables(
-                :headnode => "#{node[:hostconf][:hostmaster]}",
+                :headnode => "#{node[:hostsfiles][:hostmaster]}",
 		:shareddir => "#{node[:nfs][:shareddirectory]}"
         )
 end     

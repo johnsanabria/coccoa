@@ -3,11 +3,11 @@ hostsfiles Cookbook
 This cookbook is used to deploy a hosts file in a machine and sets a hostname in the selected machine.  
 This recipe uses two variables which are defined in the attributes/default.rb file.
 
-default["hostconf"]["hostsfile"] = "hosts"
-default["hostconf"]["hostname"] = "host"
+default["hostsfiles"]["hostsfile"] = "hosts"
+default["hostsfiles"]["hostname"] = "host"
 
-The default["hostconf"]["hostsfile"] points to a hosts file which must exist in the files/default directory.  
-On the other hand, default["hostconf"]["hostname"] has the name of the machine where this recipe is run.  
+The default["hostsfiles"]["hostsfile"] points to a hosts file which must exist in the files/default directory.  
+On the other hand, default["hostsfiles"]["hostname"] has the name of the machine where this recipe is run.  
 
 If any value is given 
 
@@ -51,7 +51,7 @@ Just include `hostsfiles` in your node's `run_list`:
 ```json
 {
   "name":"my_node",
-  "hostconf": {
+  "hostsfiles": {
 	"hostname": "master",
 	"hostmaster": "master"
   },

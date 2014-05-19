@@ -72,8 +72,9 @@ _hostlines = _hostfile.readlines()
 _hostfile.close()
 i = 0
 _master = ""
-_machinefile = open("cookbooks/mpi/files/default/machinefile",'w')
+_masterip = ""
 _createdfiles = ""
+_myip = ""
 
 #
 # Reading every ip
@@ -83,12 +84,14 @@ while (i < len(_hostlines)):
 	i = i + 1
 	if (line[0] == '#'):
 		continue
-	_filenode = "nodes/" + line.split()[0] + ".json"
+	_myip = line.split()[0]
+	_filenode = "nodes/" + _myip + ".json"
 	_createdfiles = _createdfiles + "\n\t" + _filenode
-	_nodename = line.split()[2]
-	_machinefile.write(_nodename + "\n")
+	_nodename = line.split()[1]
 	if (_master == ""): # very first line
-		_master = line.split()[2] # the alias of master is found
+		_masterip = line.split()[0] # master's ip
+		_master = line.split()[1] # the alias of master is found
+		# http://stackoverflow.com/questions/1521592/get-root-domain-of-link
 	print "To create %s"%(_filenode)
 	#
 	# creating a node in nodes directory, e.g. nodes/10.10.10.1.json
@@ -102,14 +105,9 @@ while (i < len(_hostlines)):
 	_attributesfile.close()
 	#
 	# find the hostsfiles attribute and then its subattribute named as
-	# hostname then replace its value by _nodename
-	#
-	_attributelines = findandchangefield("hostsfiles","hostname",_nodename,_attributelines)
-	#
-	# find the hostsfiles attribute and then its subattribute named as
 	# hostname then replace its value by _master
 	#
-	_attributelines = findandchangefield("hostsfiles","hostmaster",_master,_attributelines)
+	_attributelines = findandchangefield("ganglia","hostcollector",_masterip,_attributelines)
 	_tmpfile.write("{\n")
 	j = 0
 	# Writing attributes in the new nodes/<some-ip>.json file
@@ -118,10 +116,9 @@ while (i < len(_hostlines)):
 		j = j + 1
 	# Writing last lines of the nodes/<some-ip>.json file
 	if (_master == _nodename):
-		_tmpfile.write("\"run_list\": [\"role[mpich-master]\"]\n}\n")
+		_tmpfile.write("\"run_list\": [\"role[ganglia-master]\"]\n}\n")
 	else:
-		_tmpfile.write("\"run_list\": [\"role[mpich-node]\"]\n}\n")
+		_tmpfile.write("\"run_list\": [\"role[ganglia-node]\"]\n}\n")
 	_tmpfile.close()
 
-_machinefile.close()
 print "The following files were created: " + _createdfiles

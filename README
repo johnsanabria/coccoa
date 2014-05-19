@@ -3,7 +3,7 @@ computational clusters, database and web servers.
 
 This repository assumes that you have already prepared physical or virtual machines where to run the Chef recipes provided here. The machines must have a user which has root permissions and can run the sudo command with no password.
 
-It heavily relies on Chef as provisioning tool. 
+Chef is the tool used for the provisioning task.
 
 HOW TO RUN
 ----------
@@ -17,7 +17,7 @@ Attribute #{node[:users][:username]} is used in
 - mpi4py
 - users
 - ssh
-Attribute #{node[:hostconf][:hostname]} and  #{node[:hostconf][:hostname]} are used in
+Attribute #{node[:hostsfiles][:hostname]} and  #{node[:hostsfiles][:hostname]} are used in
 - hostsfiles
 - nfs
 Attribute #{node[:nfs][:shareddirectory]} in

@@ -13,7 +13,7 @@ template "/etc/hostname" do
         owner "root"
         group "root"
         variables(
-                :hostname => "#{node[:hostconf][:hostname]}"
+                :hostname => "#{node[:hostsfiles][:hostname]}"
         )
 end
 # the hostname service is restarted

@@ -6,9 +6,8 @@
 # 10.10.1.0 master.demo.org master 
 # 10.10.1.1 wn-01.demo.org wn-01 
 #
-10.10.10.2 condor-master.demo.org condor-master
+10.10.10.2 master.demo.org master
 10.10.10.3 wn-01.demo.org wn-01
-10.10.10.4 wn-02.demo.org wn-02
 -- ef cookbooks/hostsfiles/files/default/hosts
 #
 # The following are the recipes defined for a mpich master node.
@@ -37,8 +36,8 @@
 #
 # Section attributes
 #
-# You should note that in front of each variable there is either "<TYPE IT>" 
-# or "<WRITE YOUR CUSTOM VALUE>". Those with "<TYPE IT>" will be modified by 
+# You should note that in front of each variable there is either "<AUTO>" 
+# or "<WRITE YOUR CUSTOM VALUE>". Those with "<AUTO>" will be modified by 
 # the script  according information given, in this case, by the hosts file 
 # entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
 # before to run the scripts.
@@ -46,9 +45,9 @@
 # For hosts recipe
 #
 -- ba
-"hostconf": {
-	"hostname": "<TYPE IT>",
-	"hostmaster": "<TYPE IT>"
+"hostsfiles": {
+	"hostname": "<AUTO>",
+	"hostmaster": "<AUTO>"
 }
 -- ea
 #
@@ -64,10 +63,10 @@
 #
 -- ba
 "condor": {
-	"condordomain": "<TYPE IT>",
-	"condormaster": "<TYPE IT>",
-	"primaryip": "<TYPE IT>",
-	"masterip": "<TYPE IT>",
+	"condordomain": "<AUTO>",
+	"condormaster": "<AUTO>",
+	"primaryip": "<AUTO>",
+	"masterip": "<AUTO>",
 	"condoruser": "condor",
 	"compressedfilename": "condor-8.0.6-x86_64_Ubuntu12-stripped",
 	"installdir": "/opt"
