@@ -1,0 +1,74 @@
+#
+-- bf cookbooks/hostsfiles/files/default/hosts
+# hosts file
+# Please write your customized hosts file
+# <ip> <hostname> <alias> 
+# 10.10.1.0 master.demo.org master 
+# 10.10.1.1 wn-01.demo.org wn-01 
+#
+10.10.11.2 condor-master.demo-02.org condor-master
+10.10.11.3 wn-02.demo-02.org wn-02
+-- ef cookbooks/hostsfiles/files/default/hosts
+#
+# The following are the recipes defined for a mpich master node.
+# If you understand that some of them can be omitted, remove them but
+# any modification do by yourself do not guarantee that the deployment 
+# of an MPICH cluster will work
+# 
+-- br roles/condor-master.json
+"recipe[hostsfiles]"
+"recipe[users]"
+"recipe[condor]"
+"recipe[condor::master]"
+-- er roles/condor-master.json
+#
+# The following are the recipes defined for a mpich working node.
+# If you understand that some of them can be omitted, remove them but
+# any modification do by yourself do not guarantee that the deployment 
+# of an MPICH cluster will work
+# 
+-- br roles/condor-node.json
+"recipe[hostsfiles]"
+"recipe[users]"
+"recipe[condor]"
+"recipe[condor::wn]"
+-- er roles/condor-node.json
+#
+# Section attributes
+#
+# You should note that in front of each variable there is either "<AUTO>" 
+# or "<WRITE YOUR CUSTOM VALUE>". Those with "<AUTO>" will be modified by 
+# the script  according information given, in this case, by the hosts file 
+# entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
+# before to run the scripts.
+#
+# For hosts recipe
+#
+-- ba
+"hostsfiles": {
+	"hostname": "<AUTO>",
+	"hostmaster": "<AUTO>"
+}
+-- ea
+#
+# For users recipe
+#
+-- ba
+"users": {
+	"username": "user01"
+}
+-- ea
+#
+# For condor recipe
+#
+-- ba
+"condor": {
+	"condordomain": "<AUTO>",
+	"condormaster": "<AUTO>",
+	"primaryip": "<AUTO>",
+	"masterip": "<AUTO>",
+	"condoruser": "condor",
+	"compressedfilename": "condor-8.0.6-x86_64_Ubuntu12-stripped",
+	"installdir": "/opt"
+}
+-- ea
