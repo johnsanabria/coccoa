@@ -8,6 +8,7 @@
 #
 10.10.11.2 condor-master.demo-02.org condor-master
 10.10.11.3 wn-02.demo-02.org wn-02
+10.10.11.4 wn-03.demo-02.org wn-03
 -- ef cookbooks/hostsfiles/files/default/hosts
 #
 # The following are the recipes defined for a mpich master node.
