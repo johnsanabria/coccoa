@@ -15,4 +15,9 @@ template "/etc/apt/sources.list" do
                 :hostname => "#{node[:aptmirror][:server]}"
         )
 end
-
+execute "update" do
+	user "root"
+	group "root"
+	command "apt-get update"
+	action :run
+end
