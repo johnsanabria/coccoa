@@ -5,6 +5,9 @@
 # <ip> <hostname> <alias> 
 # 10.10.1.0 master.demo.org master 
 # 10.10.1.1 wn-01.demo.org wn-01 
+# First machine in the liste will be the collector and
+# will run the master role. Other nodes will run as
+# nodes.
 #
 172.17.9.51 cancerbero.netlab.eisc.univalle.edu.co cancerbero
 172.17.9.5 ws-05.netlab.eisc.univalle.edu.co ws-05
@@ -27,31 +30,20 @@
 # any modification do by yourself do not guarantee that the deployment 
 # of an MPICH cluster will work
 # 
--- br roles/openmpi-master.json
-"recipe[hostsfiles]"
-"recipe[users]"
-"recipe[openmpi]"
-"recipe[nfs]"
-"recipe[nfs::master]"
-"recipe[openmpi::master]" 
-"recipe[ssh]"
-"recipe[ssh::master]"
--- er roles/openmpi-master.json
+-- br roles/ganglia-master.json
+"recipe[ganglia]"
+"recipe[ganglia::master]"
+-- er roles/ganglia-master.json
 #
 # The following are the recipes defined for a mpich working node.
 # If you understand that some of them can be omitted, remove them but
 # any modification do by yourself do not guarantee that the deployment 
 # of an MPICH cluster will work
 # 
--- br roles/openmpi-node.json
-"recipe[hostsfiles]"
-"recipe[users]"
-"recipe[openmpi]"
-"recipe[nfs]"
-"recipe[nfs::client]"
-"recipe[ssh]"
-"recipe[ssh::client]"
--- er roles/openmpi-node.json
+-- br roles/ganglia-node.json
+"recipe[ganglia]"
+"recipe[ganglia::node]"
+-- er roles/ganglia-node.json
 #
 # Section attributes
 #
@@ -61,27 +53,14 @@
 # entry. Those entries with "<WRITE YOUR CUSTOM VALUE>" must be modified
 # before to run the scripts.
 #
-# For hosts recipe
+#
+# For ganglia recipe
 #
 -- ba
-"hostsfiles": {
-	"hostname": "<AUTO>",
-	"hostmaster": "<AUTO>"
-}
--- ea
-#
-# For users recipe
-#
--- ba
-"users": {
-	"username": "hpuser"
-}
--- ea
-#
-# For nfs recipe
-# 
--- ba
-"nfs": {
-	"shareddirectory": "/shared"
+"ganglia": {
+	"clustername": "Networking and Distributed Systems Lab",
+	"hostcollector": "<AUTO>",
+	"polltime": "50", 
+	"portcollector": "8649"
 }
 -- ea
